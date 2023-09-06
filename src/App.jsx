@@ -1,11 +1,11 @@
 import { Routes, Route, Router } from 'react-router-dom';
 
+import OutlinedCard from './Components/Card';
+
 const App = () => {
   return (
-    <>
-    <h1>Sih Prototpe</h1>
-      <Router></Router>
-    </>
+      <OutlinedCard />
+    
   );
 };
 

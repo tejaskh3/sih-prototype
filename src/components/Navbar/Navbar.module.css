@@ -1,0 +1,10 @@
+.nav-link {
+  color: black;
+  font-weight: 500;
+  letter-spacing: 0.75px;
+  text-decoration: inherit;
+}
+
+.nav-link:hover {
+  color: #ffba09;
+}

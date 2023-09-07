@@ -55,7 +55,7 @@ export default function OutlinedCard() {
           sx={{
             fontWeight: "bold",
             color: "blue",
-            fontSize: "36px", 
+            fontSize: "36px",
             textShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)",
           }}
         >
@@ -70,6 +70,7 @@ export default function OutlinedCard() {
             boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
             borderRadius: "8px",
             marginBottom: "20px",
+            textAlign: "center",
           }}
         >
           Welcome to our technology aiming to eliminate your legal worries.
@@ -85,6 +86,7 @@ export default function OutlinedCard() {
             flex: "1 1 calc(25% - 16px)",
             marginBottom: 2,
             transition: "background-color 0.3s, box-shadow 0.3s",
+            borderRadius: "20px",
             "&:hover": {
               backgroundColor: "#f0f0f0",
               boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
@@ -120,7 +122,23 @@ export default function OutlinedCard() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small" sx={{ color: "blue" }}>
+            <Button
+              size="small"
+              sx={{
+                
+                color: "blue", 
+                borderRadius: "5px", 
+                transition: "background-color 0.2s, color 0.2s",
+                paddingY:"10px",
+                fontSize:"16px",
+                "&:hover": {
+                  backgroundColor: "blue",
+                  color:"white",
+                  borderRadius:"10px", 
+                  fontWeight:"bold",
+                },
+              }}
+            >
               Read More
             </Button>
           </CardActions>

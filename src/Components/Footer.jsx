@@ -36,7 +36,7 @@ const Footer = () => {
         </span>
       </div>
       <div className="infoText">
-        2023-24 © Black Coat Technologies Pvt. Ltd. | All Rights Reserved
+        2023-24 © LegalBazaar Pvt. Ltd. | All Rights Reserved
       </div>
     </footer>
   );

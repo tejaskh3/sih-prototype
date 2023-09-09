@@ -115,7 +115,7 @@ const Navbar = () => {
     <>
       <AppBar
         color="white"
-        sx={{ px: { md: 12 }, top: 0, left: 0 }}
+        sx={{ px: { md: 12 }}}
         position="fixed"
       >
         <Toolbar sx={{ justifyContent: "space-between" }}>

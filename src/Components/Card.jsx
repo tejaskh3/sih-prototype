@@ -1,9 +1,9 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 const cards = [
@@ -35,61 +35,47 @@ const cards = [
 
 export default function OutlinedCard() {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "16px",
-      }}
-    >
-      <div
-        sx={{
-          marginBottom: "16px",
-          textAlign: "center",
-          display: "flex",
-        }}
+    <Box component="div" px={{ xs: 2, md: 18 }}>
+      <Stack
+        direction={{ xs: "column", md: "row" }}
+        justifyContent={"space-between"}
+        pt={4}
+        pb={6}
       >
         <Typography
-          variant="h4"
-          gutterBottom
-          sx={{
-            fontWeight: "bold",
-            color: "blue",
-            fontSize: "36px",
-            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)",
-          }}
+          color="black"
+          fontSize={{ xs: 30, md: 40 }}
+          pb={{ xs: 2, md: 0 }}
+          sx={{ fontWeight: "bold" }}
         >
-          Our Services :
+          Our services
         </Typography>
         <Typography
-          variant="body1"
+          fontSize={{ xs: 18, md: 20 }}
+          maxWidth={{ md: "70%" }}
           sx={{
-            fontSize: "15px",
-            padding: "10px",
-            backgroundColor: "#f0f0f0",
-            boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
-            borderRadius: "8px",
-            marginBottom: "20px",
-            textAlign: "center",
+            color: "#121122B3",
           }}
         >
           Welcome to our technology aiming to eliminate your legal worries.
           Consult anything and everything legal with experienced Legal
           professionals available 24X7 to talk to you.
         </Typography>
-      </div>
+      </Stack>
       {cards.map((cardData, index) => (
         <Card
           key={index}
-          variant="outlined"
+          // variant="outlined"
           sx={{
+            border: "none",
+            backgroundColor: "#f2f3ff",
             flex: "1 1 calc(25% - 16px)",
             marginBottom: 2,
-            transition: "background-color 0.3s, box-shadow 0.3s",
+            // transition: "background-color 0.3s, box-shadow 0.3s",
             borderRadius: "20px",
             "&:hover": {
-              backgroundColor: "#f0f0f0",
-              boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+              backgroundColor: "#f2f3ff",
+              // boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
               cursor: "pointer",
             },
           }}
@@ -125,17 +111,16 @@ export default function OutlinedCard() {
             <Button
               size="small"
               sx={{
-                
-                color: "blue", 
-                borderRadius: "5px", 
+                color: "blue",
+                borderRadius: "5px",
                 transition: "background-color 0.2s, color 0.2s",
-                paddingY:"10px",
-                fontSize:"16px",
+                paddingY: "10px",
+                fontSize: "16px",
                 "&:hover": {
                   backgroundColor: "blue",
-                  color:"white",
-                  borderRadius:"10px", 
-                  fontWeight:"bold",
+                  color: "white",
+                  borderRadius: "10px",
+                  fontWeight: "bold",
                 },
               }}
             >

@@ -1,4 +1,3 @@
-import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -72,7 +71,7 @@ export default function ActionAreaCard() {
     },
   ];
   return (
-    <div>
+    <>
       <Typography
         variant="h4"
         gutterBottom
@@ -135,7 +134,7 @@ export default function ActionAreaCard() {
         ))}
       </div>
       <style>
-        {`
+        {/* {`
           @media (max-width: 768px) {
             .image_1{
               width: 80%;
@@ -151,8 +150,8 @@ export default function ActionAreaCard() {
               max-width: 80%;
             }
           }
-        `}
+        `} */}
       </style>
-    </div>
+    </>
   );
 }

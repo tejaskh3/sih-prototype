@@ -1,5 +1,5 @@
-import CloseIcon from "@mui/icons-material/Close";
-import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from '@mui/icons-material/Close';
+import MenuIcon from '@mui/icons-material/Menu';
 import {
   AppBar,
   Button,
@@ -10,11 +10,11 @@ import {
   ListItemButton,
   Stack,
   Toolbar,
-  Typography,
-} from "@mui/material";
-import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import classes from "./Navbar.module.css";
+  Typography
+} from '@mui/material';
+import { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import classes from './Navbar.module.css';
 
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -22,73 +22,73 @@ const Navbar = () => {
   const location = useLocation();
 
   const toggleDrawer = () => {
-    setDrawerOpen((prevState) => !prevState);
+    setDrawerOpen(prevState => !prevState);
   };
 
   // change this later
   const dynamicBtnRoute =
-    location.pathname === "/service-providers-home" ? "" : "";
+    location.pathname === '/service-providers-home' ? '' : '';
 
   const navLinks = [
     {
-      name: "Talk to Lawyer",
-      path: "",
+      name: 'Talk to Lawyer',
+      path: ''
     },
     {
-      name: "Property",
-      path: "",
+      name: 'Property',
+      path: ''
     },
     {
-      name: "Document",
-      path: "",
+      name: 'Document',
+      path: ''
     },
     {
-      name: "Startup",
-      path: "",
+      name: 'Startup',
+      path: ''
     },
     {
-      name: "Ask Lawyer",
-      path: "",
-    },
+      name: 'Ask Lawyer',
+      path: ''
+    }
   ];
 
   const drawer = (
     <>
       <AppBar color="white">
-        <Toolbar sx={{ justifyContent: "space-between" }}>
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Typography>
             <i>Logo here</i>
           </Typography>
-          <Button onClick={toggleDrawer} sx={{ color: "black" }}>
+          <Button onClick={toggleDrawer} sx={{ color: 'black' }}>
             <CloseIcon />
           </Button>
         </Toolbar>
       </AppBar>
       <List>
-        {navLinks.map((navLink) => (
+        {navLinks.map(navLink => (
           <ListItem key={navLink.path}>
             <ListItemButton onClick={toggleDrawer}>
-              <Link to={navLink.path} className={classes["nav-link"]}>
+              <Link to={navLink.path} className={classes['nav-link']}>
                 {navLink.name}
               </Link>
             </ListItemButton>
           </ListItem>
         ))}
 
-        {location.pathname !== "/service-providers-home" && (
+        {location.pathname !== '/service-providers-home' && (
           <ListItem>
             <Button
               variant="contained"
               color="secondary"
               sx={{
-                width: "100%",
-                textAlign: "left",
-                fontWeight: "bolder",
-                textTransform: "none",
+                width: '100%',
+                textAlign: 'left',
+                fontWeight: 'bolder',
+                textTransform: 'none'
               }}
               onClick={() => {
                 toggleDrawer();
-                navigate("/service-providers-home");
+                navigate('/service-providers-home');
               }}
             >
               Lawyers Click Here
@@ -100,9 +100,9 @@ const Navbar = () => {
             color="secondary"
             onClick={() => {
               toggleDrawer();
-              navigate("");
+              navigate('');
             }}
-            sx={{ fontWeight: "bolder", textTransform: "none" }}
+            sx={{ fontWeight: 'bolder', textTransform: 'none' }}
           >
             Login
           </Button>
@@ -110,15 +110,10 @@ const Navbar = () => {
       </List>
     </>
   );
-
   return (
     <>
-      <AppBar
-        color="white"
-        sx={{ px: { md: 12 }, top: 0, left: 0 }}
-        position="fixed"
-      >
-        <Toolbar sx={{ justifyContent: "space-between" }}>
+      <AppBar color="white" sx={{ px: { md: 12 } }} position="fixed">
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
           <IconButton>
             <Typography>
               <i>Logo here</i>
@@ -127,14 +122,14 @@ const Navbar = () => {
 
           {/* navbar for PC */}
           <Stack
-            direction={"row"}
+            direction={'row'}
             spacing={3}
-            sx={{ display: { xs: "none", md: "block" } }}
+            sx={{ display: { xs: 'none', md: 'block' } }}
           >
             {navLinks.map((navLink, index) => (
               <Link
                 key={index}
-                className={classes["nav-link"]}
+                className={classes['nav-link']}
                 to={navLink.path}
               >
                 {navLink.name}
@@ -143,19 +138,19 @@ const Navbar = () => {
           </Stack>
 
           <Stack
-            direction={"row"}
+            direction={'row'}
             spacing={3}
             sx={{
-              display: { xs: "none", md: "block" },
+              display: { xs: 'none', md: 'block' }
             }}
           >
-            {location.pathname !== "/service-providers-home" && (
+            {location.pathname !== '/service-providers-home' && (
               <Button
                 variant="contained"
                 color="secondary"
                 className={classes.button}
-                onClick={() => navigate("/service-providers-home")}
-                sx={{ textTransform: "none", fontWeight: "bolder" }}
+                onClick={() => navigate('/service-providers-home')}
+                sx={{ textTransform: 'none', fontWeight: 'bolder' }}
               >
                 Lawyers Click Here
               </Button>
@@ -163,8 +158,8 @@ const Navbar = () => {
             <Button
               className={classes.button}
               color="secondary"
-              onClick={() => navigate(dynamicBtnRoute)}
-              sx={{ textTransform: "none", fontWeight: "bolder" }}
+              onClick={handleClick}
+              sx={{ textTransform: 'none', fontWeight: 'bolder' }}
             >
               Login
             </Button>
@@ -172,7 +167,7 @@ const Navbar = () => {
 
           <Button
             onClick={toggleDrawer}
-            sx={{ color: "black", display: { md: "none" } }}
+            sx={{ color: 'black', display: { md: 'none' } }}
           >
             <MenuIcon />
           </Button>

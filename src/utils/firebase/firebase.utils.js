@@ -1,3 +1,4 @@
+import firebaseConfig from '../../firebasedetil';
 import { initializeApp } from 'firebase/app';
 import {
   getAuth,
@@ -16,7 +17,7 @@ import {
   getDoc, // to be exact it is get doc data
   setDoc // to be exact it is set doc data
 } from 'firebase/firestore';
-import firebaseConfig from '../../firebasedetil';
+
 const firebaseApp = initializeApp(firebaseConfig);
 
 const Googleprovider = new GoogleAuthProvider();
@@ -25,9 +26,9 @@ Googleprovider.setCustomParameters({
 });
 
 export const auth = getAuth();
-export const signInWithGooglePopup = () => {
-  console.log(signInWithPopup(auth, Googleprovider));
-};
+export const signInWithGooglePopup = () =>
+  signInWithPopup(auth, Googleprovider);
+
 export const signInWithGoogleRedirect = () =>
   signInWithRedirect(auth, provider);
 

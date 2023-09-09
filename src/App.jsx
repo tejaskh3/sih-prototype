@@ -1,6 +1,8 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import RootLayout from './Pages/RootLayout';
-import ServiceProvidersHome from './Pages/Service Providers/ServiceProvidersHome';
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import RootLayout from "./pages/RootLayout";
+import ServiceProvidersHome from "./pages/service-providers/ServiceProvidersHome";
+import Footer from "./components/Footer";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -9,6 +11,14 @@ const App = () => {
       element: <RootLayout />,
       children: [
         {
+          index: true,
+          element: <HomePage />,
+        },
+        {
+          index: true,
+          element: <HomePage />,
+        },
+        {
           path: 'service-providers-home',
           element: <ServiceProvidersHome />
         }
@@ -16,7 +26,12 @@ const App = () => {
     }
   ]);
 
-  return <RouterProvider router={router}></RouterProvider>;
+  return (
+    <>
+      <RouterProvider router={router}></RouterProvider>;
+      <Footer />
+    </>
+  );
 };
 
 export default App;

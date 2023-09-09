@@ -2,8 +2,8 @@ import { Box, Grid, Typography } from "@mui/material";
 import classes from "./ClientSection.module.css";
 const ClientSection = () => {
   return (
-    <Grid container sx={{ backgroundColor: "#6068db" }} py={2}>
-      <Grid item xs={12} md={6} px={{ xs: 0, md: 18}} py={18}>
+    <Grid container sx={{ backgroundColor: "#6068db", textAlign: {xs: "center", sm: "left"}, px: {xs: 2} }} py={2}>
+      <Grid item xs={12} md={6} px={{ xs: 0, md: 18}} py={{xs: 8, md: 18}}>
         <Typography color="#ffffff8f" fontSize={20}>
           <Typography color="#fff" fontSize={35} fontWeight={800}>
             Add new Client
@@ -31,11 +31,11 @@ const ClientSection = () => {
         </Typography>
       </Grid>
 
-      <Grid item xs={12} md={6} py={2}>
+      <Grid item xs={12} md={6} py={5} sx={{px: {xs: 0}, mt: {xs: -5, md: "inherit"}}}>
         <Box
           component={"div"}
           className={classes.image}
-          sx={{ backgroundSize: { xs: "cover", md: "contain" } }}
+          sx={{ backgroundSize: "contain" }}
         ></Box>
       </Grid>
     </Grid>

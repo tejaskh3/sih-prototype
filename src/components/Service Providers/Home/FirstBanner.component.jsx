@@ -1,14 +1,16 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
 import classes from "./FirstBanner.module.css";
 
 const FirstBanner = () => {
+  const theme = useTheme();
+
   return (
     <Grid container direction={{ xs: "column-reverse", md: "row" }} sx={{ padding: {xs: "0", md: "0 6rem"}}}>
-      <Grid item xs={12} md={6} sx={{ background: "#4c50e0", p: "8% 5%" }}>
+      <Grid item xs={12} md={6} sx={{ background: theme.palette.secondary.main, p: "8% 5%" }}>
         <Typography sx={{ fontFamily: "Poppins, sans-serif" }}>
           <Typography variant="h2" sx={{ fontWeight: 700, m: "2% 0" }}>
             India’s{" "}
-            <Box component={"span"} sx={{ color: " #ffba09" }}>
+            <Box component={"span"} sx={{ color: theme.palette.primary.main}}>
               #1
             </Box>
           </Typography>

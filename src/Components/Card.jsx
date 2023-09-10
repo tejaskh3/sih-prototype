@@ -35,100 +35,101 @@ const cards = [
 
 export default function OutlinedCard() {
   return (
-    <Box component="div" px={{ xs: 2, md: 18 }}>
+    <Box
+      component="div"
+      px={{ xs: 2, md: 18 }}
+      py={3}
+      sx={{ backgroundColor: "#6068db" }}
+    >
       <Stack
         direction={{ xs: "column", md: "row" }}
         justifyContent={"space-between"}
         pt={4}
         pb={6}
+        px={1}
       >
         <Typography
-          color="black"
+          color="white"
           fontSize={{ xs: 30, md: 40 }}
           pb={{ xs: 2, md: 0 }}
           sx={{ fontWeight: "bold" }}
         >
           Our services
         </Typography>
-        <Typography
-          fontSize={{ xs: 18, md: 20 }}
-          maxWidth={{ md: "70%" }}
-          sx={{
-            color: "#121122B3",
-          }}
-        >
+        <Typography fontSize={{ xs: 18, md: 20 }} maxWidth={{ md: "70%" }}>
           Welcome to our technology aiming to eliminate your legal worries.
           Consult anything and everything legal with experienced Legal
           professionals available 24X7 to talk to you.
         </Typography>
       </Stack>
-      {cards.map((cardData, index) => (
-        <Card
-          key={index}
-          // variant="outlined"
-          sx={{
-            border: "none",
-            backgroundColor: "#f2f3ff",
-            flex: "1 1 calc(25% - 16px)",
-            marginBottom: 2,
-            // transition: "background-color 0.3s, box-shadow 0.3s",
-            borderRadius: "20px",
-            "&:hover": {
-              backgroundColor: "#f2f3ff",
-              // boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
-              cursor: "pointer",
-            },
-          }}
-        >
-          <CardContent>
-            <Typography
-              sx={{ fontSize: 14 }}
-              color="text.secondary"
-              gutterBottom
-            >
-              {cardData.sno}
-            </Typography>
-            <Typography
-              variant="h5"
-              component="div"
-              sx={{
-                fontWeight: "bold",
-              }}
-            >
-              {cardData.title}
-            </Typography>
-            <Typography
-              variant="body2"
-              sx={{
-                fontSize: 15,
-                marginTop: "8px",
-              }}
-            >
-              {cardData.content}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button
-              size="small"
-              sx={{
-                color: "blue",
-                borderRadius: "5px",
-                transition: "background-color 0.2s, color 0.2s",
-                paddingY: "10px",
-                fontSize: "16px",
-                "&:hover": {
-                  backgroundColor: "blue",
-                  color: "white",
-                  borderRadius: "10px",
+
+      <Stack direction={{ xs: "column", lg: "row" }} gap={2}>
+        {cards.map((cardData, index) => (
+          <Card
+            key={index}
+            sx={{
+              backgroundColor: "#faf9ff",
+              borderRadius: "20px",
+              flex: "1 1 calc(25% - 16px)",
+              marginBottom: 2,
+              boxShadow: "none",
+              transition: "0.3s ease-out ",
+              "&:hover": {
+                color: "#ffffff",
+                transform: "translateY(-5px)",
+                backgroundColor: "#3f43c810",
+                cursor: "pointer",
+              },
+            }}
+          >
+            <CardContent>
+              <Typography
+                fontSize={{ xs: 25, md: 28 }}
+                fontWeight={700}
+                sx={{ opacity: 0.6 }}
+                color="text.secondary"
+                gutterBottom
+              >
+                {cardData.sno}
+              </Typography>
+              <Typography
+                height={{ lg: "110px" }}
+                variant="h5"
+                component="div"
+                sx={{
                   fontWeight: "bold",
-                },
-              }}
-            >
-              Read More
-            </Button>
-          </CardActions>
-        </Card>
-      ))}
+                }}
+              >
+                {cardData.title}
+              </Typography>
+              <Typography
+                color="#121122B3"
+                sx={{
+                  marginTop: "8px",
+                }}
+              >
+                {cardData.content}
+              </Typography>
+            </CardContent>
+            <CardActions sx={{ paddingLeft: 2 }}>
+              <Button
+                size="small"
+                color="inherit"
+                m={5}
+                sx={{
+                  borderRadius: "5px",
+                  paddingY: "10px",
+                  fontSize: "16px",
+                  textDecoration: "underline #60689b",
+                  textTransform: "none",
+                }}
+              >
+                Read more
+              </Button>
+            </CardActions>
+          </Card>
+        ))}
+      </Stack>
     </Box>
   );
 }

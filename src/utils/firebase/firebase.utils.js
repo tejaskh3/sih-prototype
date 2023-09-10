@@ -74,3 +74,36 @@ export const signOutUser = async () => {
 export const onAuthStateChangedListner = callback => {
   onAuthStateChanged(auth, callback);
 };
+
+// if !exist then creation of service-provider and returning refrence to service-providers
+export const createServiceProviderDocumentFromAuth = async (
+  userDetails, // Rename this parameter to match the function call
+  otherDetails = {}
+) => {
+  const serviceProviderDocRef = doc(
+    db,
+    'service-providers',
+    userDetails.uid // Use userDetails instead of serviceProviderDetails
+  );
+  const serviceProviderSnapShot = await getDoc(serviceProviderDocRef);
+  if (!serviceProviderSnapShot.exists()) {
+    const { displayName, email } = userDetails; // Use userDetails here
+    const createdAt = new Date();
+
+    try {
+      await setDoc(serviceProviderDocRef, {
+        displayName,
+        email,
+        createdAt,
+        ...otherDetails // Spread otherDetails into the Firestore document
+      });
+    } catch (error) {
+      console.log('Error creating the service provider', error.message);
+    }
+    return serviceProviderDocRef;
+  }
+};
+export const createProviderFromEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  return await createUserFromEmailAndPassword(email, password);
+};

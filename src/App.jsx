@@ -4,6 +4,7 @@ import RootLayout from './pages/RootLayout';
 import ServiceProvidersHome from './pages/service-providers/ServiceProvidersHome';
 import Footer from './components/Footer';
 import SignUpForm from './Components/SignInForm.componet';
+import ServiceProviderRegisterForm from './Components/ServiceProviderRegisterForm.component';
 
 const App = () => {
   const router = createBrowserRouter([
@@ -23,7 +24,7 @@ const App = () => {
           path: 'service-providers-home',
           element: <ServiceProvidersHome />
         },
-        { path: 'auth', element: <SignUpForm /> }
+        { path: 'auth', element: <ServiceProviderRegisterForm /> }
       ]
     }
   ]);

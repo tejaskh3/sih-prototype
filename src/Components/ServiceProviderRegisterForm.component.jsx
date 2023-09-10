@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import authImageProviders from '../assets/left-bg-service-auth.png';
-import styles from './SignInForm.module.css';
 
 import {
   Box,
@@ -13,7 +12,9 @@ import {
 } from '@mui/material';
 import {
   signInWithGooglePopup,
-  createServiceProviderDocumentFromAuth
+  createServiceProviderDocumentFromAuth,
+  createProviderFromEmailAndPassword,
+  createUserFromEmailAndPassword
 } from '../utils/firebase/firebase.utils';
 
 const serviceProviders = [
@@ -36,27 +37,54 @@ const serviceProviders = [
 ];
 
 const defaultCredentials = {
+  displayName: '',
   email: '',
   password: '',
   role: '',
   barCouncilId: ''
 };
-const SignInForm = () => {
-  const [loginCredentials, setLoginCredentials] = useState(defaultCredentials);
-  const { email, password, role, barCouncilId } = loginCredentials;
+const ServiceProviderRegisterForm = () => {
+  const [registerCredentials, setRegisterCredentials] =
+    useState(defaultCredentials);
+  const { displayName, email, password, role, barCouncilId } =
+    registerCredentials;
 
   const handleChange = e => {
     const { name, value } = e.target;
-    setLoginCredentials({ ...loginCredentials, [name]: value });
+    setRegisterCredentials({ ...registerCredentials, [name]: value });
   };
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    console.log(loginCredentials);
+    console.log(email);
+    console.log(password);
+    try {
+      const res = await createUserFromEmailAndPassword(email, password);
+      console.log(res);
+      res = { ...res, displayName };
+      const ref = await createServiceProviderDocumentFromAuth(
+        res.user,
+        registerCredentials
+      );
+      console.log(ref);
+    } catch (error) {
+      if (error.code === 'auth/email-already-in-use') {
+        alert('email already in use');
+        return;
+      }
+      if (error.code === 'auth/weak-password') {
+        alert('password is too weak keep at least 6 words');
+        return;
+      }
+      console.log(error.message);
+    }
   };
   const handleGooglePopup = async () => {
     const res = await signInWithGooglePopup();
     console.log(res.user);
-    const ref = await createServiceProviderDocumentFromAuth(res.user,loginCredentials);
+    const ref = await createServiceProviderDocumentFromAuth(
+      res.user,
+      registerCredentials
+    );
     console.log('service-provider ref', ref);
   };
   return (
@@ -64,7 +92,6 @@ const SignInForm = () => {
       <Grid item xs={6} md={7}>
         <Box
           component="div"
-          className={styles.image}
           sx={{
             backgroundImage: `url(${authImageProviders})`,
             backgroundRepeat: 'no-repeat',
@@ -85,10 +112,10 @@ const SignInForm = () => {
       </Grid>
       <Grid item xs={6} md={4}>
         <Typography variant="h1" fontSize={'42px'} color={'rgba(18,17,39,.75)'}>
-          Login to you account
+          Signing Up
         </Typography>
         <Typography variant="p" color={'rgba(18,17,39,.75)'}>
-          See what is going on with your business.
+          Welcome to out legal duniya.
         </Typography>
         <Box
           component={'form'}
@@ -104,16 +131,35 @@ const SignInForm = () => {
         >
           <TextField
             id="outlined-basic"
+            label="Name"
+            variant="outlined"
+            type="text"
+            name="displayName"
+            value={displayName}
+            required
+            onChange={handleChange}
+          />
+          <TextField
+            id="outlined-basic"
+            type="email"
             label="Email"
             variant="outlined"
-            type="email"
             name="email"
             value={email}
             required
             onChange={handleChange}
           />
-          <TextField id="outlined-basic" label="Password" variant="outlined" />
-          {/* <TextField
+          <TextField
+            id="outlined-basic"
+            label="Password"
+            variant="outlined"
+            name="password"
+            value={password}
+            onChange={handleChange}
+            required
+            type="password"
+          />
+          <TextField
             id="outlined-select-currency"
             select
             label="Select"
@@ -121,6 +167,7 @@ const SignInForm = () => {
             helperText="Please select your role"
             name="role"
             value={role}
+            required
             onChange={handleChange}
           >
             {serviceProviders.map(option => (
@@ -135,8 +182,9 @@ const SignInForm = () => {
             variant="outlined"
             name="barCouncilId"
             value={barCouncilId}
+            required
             onChange={handleChange}
-          /> */}
+          />
           <Box
             component={'div'}
             sx={{
@@ -146,9 +194,9 @@ const SignInForm = () => {
             }}
           >
             <Button type="submit" variant="contained" onClick={handleSubmit}>
-              Sign In
+              Register
             </Button>
-            <Button
+            {/* <Button
               type="button"
               sx={{
                 backgroundColor: '#3f43c8',
@@ -161,7 +209,7 @@ const SignInForm = () => {
               onClick={handleGooglePopup}
             >
               Sign In WithGoogle
-            </Button>
+            </Button> */}
           </Box>
           <Box
             component={'div'}
@@ -195,4 +243,4 @@ const SignInForm = () => {
   );
 };
 
-export default SignInForm;
+export default ServiceProviderRegisterForm;

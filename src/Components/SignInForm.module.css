@@ -1,4 +1,15 @@
-.image{
+.outer-div {
+  background-image: url("../assets/providers-login-bg.jpg");
+  min-height: "100%";
+  height: 100%;
+}
+
+
+.image {
+  background: linear-gradient(179.56deg, #5659c7 10.21%, #6f71c7 183.43%);
+  background-image: url("../assets/left-bg-service-auth.png");
+  background-repeat: no-repeat;
+  min-height: 501.58px;
+  height: 100%;
   background-size: contain;
-  height: 400px;
 }

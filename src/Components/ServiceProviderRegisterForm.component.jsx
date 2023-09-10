@@ -58,10 +58,10 @@ const ServiceProviderRegisterForm = () => {
     console.log(email);
     console.log(password);
     try {
-      const res = await createUserFromEmailAndPassword(email, password);
+      let res = await createUserFromEmailAndPassword(email, password);
       console.log(res);
       res = { ...res, displayName };
-      const ref = await createServiceProviderDocumentFromAuth(
+      let ref = await createServiceProviderDocumentFromAuth(
         res.user,
         registerCredentials
       );
@@ -75,7 +75,11 @@ const ServiceProviderRegisterForm = () => {
         alert('password is too weak keep at least 6 words');
         return;
       }
-      console.log(error.message);
+      console.log('error registering the service provider', {
+        error,
+        success: false,
+        msg: error.message
+      });
     }
   };
   const handleGooglePopup = async () => {

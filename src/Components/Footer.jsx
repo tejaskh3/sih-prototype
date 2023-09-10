@@ -10,10 +10,9 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <footer className="footer">
-      {/* <ContentWrapper> */}
       <ul className="menuItems">
         <li className="menuItem">Terms Of Use</li>
-        <li className="menuItem">Privacy-Policy</li>
+        <li className="menuItem">Privacy Policy</li>
         <li className="menuItem">About</li>
         <li className="menuItem">Blog</li>
         <li className="menuItem">FAQ</li>

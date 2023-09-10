@@ -124,7 +124,7 @@ const Navbar = () => {
           <Stack
             direction={'row'}
             spacing={3}
-            sx={{ display: { xs: 'none', md: 'block' } }}
+            sx={{ display: { xs: "none", lg: "block" } }}
           >
             {navLinks.map((navLink, index) => (
               <Link
@@ -137,6 +137,7 @@ const Navbar = () => {
             ))}
           </Stack>
 
+          <Stack direction="row">
           <Stack
             direction={'row'}
             spacing={3}
@@ -166,10 +167,11 @@ const Navbar = () => {
 
           <Button
             onClick={toggleDrawer}
-            sx={{ color: 'black', display: { md: 'none' } }}
+            sx={{ color: "black", display: { lg: "none" } }}
           >
             <MenuIcon />
-          </Button>
+            </Button>
+            </Stack>
         </Toolbar>
 
         {/* navbar for Mobile */}

@@ -1,8 +1,9 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import RootLayout from "./pages/RootLayout";
-import ServiceProvidersHome from "./pages/service-providers/ServiceProvidersHome";
-import Footer from "./components/Footer";
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import RootLayout from './pages/RootLayout';
+import ServiceProvidersHome from './pages/service-providers/ServiceProvidersHome';
+import Footer from './components/Footer';
+import SignUpForm from './Components/SignInForm.componet';
 
 const App = () => {
   const router = createBrowserRouter([
@@ -12,16 +13,17 @@ const App = () => {
       children: [
         {
           index: true,
-          element: <HomePage />,
+          element: <HomePage />
         },
         {
           index: true,
-          element: <HomePage />,
+          element: <HomePage />
         },
         {
           path: 'service-providers-home',
           element: <ServiceProvidersHome />
-        }
+        },
+        { path: 'auth', element: <SignUpForm /> }
       ]
     }
   ]);
@@ -29,7 +31,7 @@ const App = () => {
   return (
     <>
       <RouterProvider router={router}></RouterProvider>;
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

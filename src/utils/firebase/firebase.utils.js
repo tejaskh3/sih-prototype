@@ -59,12 +59,14 @@ export const createUserDocumentFromAuth = async (
   return userDocRef;
 };
 export const createUserFromEmailAndPassword = async (email, password) => {
-  if (!email || !password) return;
+  if (!email || !password)
+    return 'email and password not provided to the function';
   return await createUserWithEmailAndPassword(auth, email, password);
 };
 
 export const signInUserWithEmailAndPassword = async (email, password) => {
-  if (!email || !password) return;
+  if (!email || !password)
+    return 'email and password not provided to the function';
   return await signInWithEmailAndPassword(auth, email, password);
 };
 
@@ -106,4 +108,9 @@ export const createServiceProviderDocumentFromAuth = async (
 export const createProviderFromEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
   return await createUserFromEmailAndPassword(email, password);
+};
+export const signInProviderWithEmailAndPassword = async (email, password) => {
+  if (!email || !password)
+    return 'email and password not provided to the function';
+  return await signInUserWithEmailAndPassword(email, password);
 };

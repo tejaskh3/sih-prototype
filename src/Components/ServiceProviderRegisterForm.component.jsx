@@ -66,6 +66,7 @@ const ServiceProviderRegisterForm = () => {
         registerCredentials
       );
       console.log(ref);
+      setRegisterCredentials(defaultCredentials);
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
         alert('email already in use');
@@ -200,20 +201,6 @@ const ServiceProviderRegisterForm = () => {
             <Button type="submit" variant="contained" onClick={handleSubmit}>
               Register
             </Button>
-            {/* <Button
-              type="button"
-              sx={{
-                backgroundColor: '#3f43c8',
-                color: '#fff',
-                fontWeight: 'bold',
-                '&:hover': {
-                  color: 'blue'
-                }
-              }}
-              onClick={handleGooglePopup}
-            >
-              Sign In WithGoogle
-            </Button> */}
           </Box>
           <Box
             component={'div'}

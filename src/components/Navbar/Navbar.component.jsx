@@ -158,7 +158,6 @@ const Navbar = () => {
             <Button
               className={classes.button}
               color="secondary"
-              // onClick={handleClick}
               sx={{ textTransform: 'none', fontWeight: 'bolder' }}
             >
               Login

@@ -2,61 +2,49 @@ import React, { useState } from 'react';
 import authImageProviders from '../assets/left-bg-service-auth.png';
 import styles from './SignInForm.module.css';
 
-import {
-  Box,
-  Grid,
-  Input,
-  Typography,
-  TextField,
-  MenuItem,
-  Button
-} from '@mui/material';
+import { Box, Grid, Typography, TextField, Button } from '@mui/material';
 import {
   signInWithGooglePopup,
-  createServiceProviderDocumentFromAuth
+  signInProviderWithEmailAndPassword
 } from '../utils/firebase/firebase.utils';
-
-const serviceProviders = [
-  {
-    value: 'advocate',
-    label: 'Advocate'
-  },
-  {
-    value: 'mediator',
-    label: 'Mediator'
-  },
-  {
-    value: 'notery',
-    label: 'Notery'
-  },
-  {
-    value: 'LegalFirm',
-    label: 'Legal Frim'
-  }
-];
 
 const defaultCredentials = {
   email: '',
-  password: '',
-  role: '',
-  barCouncilId: ''
+  password: ''
 };
-const SignInForm = () => {
+const ServiceProviderSignInForm = () => {
   const [loginCredentials, setLoginCredentials] = useState(defaultCredentials);
-  const { email, password, role, barCouncilId } = loginCredentials;
+  const { email, password } = loginCredentials;
 
   const handleChange = e => {
     const { name, value } = e.target;
     setLoginCredentials({ ...loginCredentials, [name]: value });
   };
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
+    if (!email || !password) {
+      alert('');
+    }
     e.preventDefault();
-    console.log(loginCredentials);
+    try {
+      const res = await signInProviderWithEmailAndPassword(email, password);
+      console.log(res);
+      setLoginCredentials(defaultCredentials);
+    } catch (error) {
+      if (error.code === 'auth/user-not-found') {
+        alert('this email is not registered with us');
+      }
+      if (error.code === 'auth/wrong-password') {
+        alert('incorrect password');
+      } else console.log('error while sining up service provider', error);
+    }
   };
   const handleGooglePopup = async () => {
     const res = await signInWithGooglePopup();
     console.log(res.user);
-    const ref = await createServiceProviderDocumentFromAuth(res.user,loginCredentials);
+    const ref = await createServiceProviderDocumentFromAuth(
+      res.user,
+      loginCredentials
+    );
     console.log('service-provider ref', ref);
   };
   return (
@@ -112,31 +100,16 @@ const SignInForm = () => {
             required
             onChange={handleChange}
           />
-          <TextField id="outlined-basic" label="Password" variant="outlined" />
-          {/* <TextField
-            id="outlined-select-currency"
-            select
-            label="Select"
-            defaultValue="EUR"
-            helperText="Please select your role"
-            name="role"
-            value={role}
-            onChange={handleChange}
-          >
-            {serviceProviders.map(option => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
           <TextField
             id="outlined-basic"
-            label="Bar Council Id"
+            label="Password"
             variant="outlined"
-            name="barCouncilId"
-            value={barCouncilId}
+            name="password"
+            value={password}
             onChange={handleChange}
-          /> */}
+            required
+            type="password"
+          />
           <Box
             component={'div'}
             sx={{
@@ -195,4 +168,4 @@ const SignInForm = () => {
   );
 };
 
-export default SignInForm;
+export default ServiceProviderSignInForm;

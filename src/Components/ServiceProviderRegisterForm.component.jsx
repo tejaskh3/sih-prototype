@@ -75,19 +75,11 @@ const ServiceProviderRegisterForm = () => {
       if (error.code === 'auth/weak-password') {
         alert('password is too weak keep at least 6 words');
         return;
-      }
-      console.log('error registering the service provider', error.message);
+      } else
+        console.log('error registering the service provider', error.message);
     }
   };
-  const handleGooglePopup = async () => {
-    const res = await signInWithGooglePopup();
-    console.log(res.user);
-    const ref = await createServiceProviderDocumentFromAuth(
-      res.user,
-      registerCredentials
-    );
-    console.log('service-provider ref', ref);
-  };
+
   return (
     <Grid container spacing={1} color={'black'} x>
       <Grid item xs={6} md={7}>

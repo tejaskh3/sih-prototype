@@ -47,21 +47,21 @@ const UserSignInForm = () => {
     <Container
       component="main"
       maxWidth="xs"
-      sx={{
-        color: 'black',
-        boxShadow:
-          'rgba(0, 0, 0, 0.24) 0px 3px 8px;rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px',
-        borderRadius: '5px',
-        width: 'content-fit'
-        // padding:'',
-      }}
+      // sx={{
+      //   color: 'black',
+      //   boxShadow:
+      //     'rgba(0, 0, 0, 0.24) 0px 3px 8px;rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px',
+      //   borderRadius: '5px',
+      //   width: 'content-fit'
+      //   // padding:'',
+      // }}
     >
       <Box
         sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center'
+          // marginTop: 8,
+          // display: 'flex',
+          // flexDirection: 'column',
+          // alignItems: 'center'
         }}
       >
         <Typography component="h1" fontSize={'42px'}>

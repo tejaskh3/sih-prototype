@@ -5,8 +5,8 @@ import ServiceProvidersHome from './pages/service-providers/ServiceProvidersHome
 import ServiceProviderSignInForm from './Components/ServiceProviderSignIn.component';
 import ServiceProviderRegisterForm from './Components/ServiceProviderRegisterForm.component';
 import UserSignInForm from './Components/UserSignInForm.component';
-// UserSignInForm;
-
+import UserSignUpForm from './Components/UserSignUpForm.component';
+import { UserProvider } from './context/User.Context';
 const App = () => {
   const router = createBrowserRouter([
     {
@@ -25,8 +25,8 @@ const App = () => {
           path: 'service-providers-home',
           element: <ServiceProvidersHome />
         },
-        { path: 'auth', element: <ServiceProviderSignInForm/> },
-        { path: 'auth/user', element: <UserSignInForm/> }
+        { path: 'auth', element: <ServiceProviderRegisterForm /> },
+        { path: 'auth/user', element: <UserSignUpForm /> }
       ]
     }
   ]);
@@ -34,6 +34,7 @@ const App = () => {
   return (
     <>
       <RouterProvider router={router}></RouterProvider>;
+      {/* <Footer /> */}
     </>
   );
 };

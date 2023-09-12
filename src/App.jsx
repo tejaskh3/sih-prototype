@@ -24,7 +24,8 @@ const App = () => {
           path: "service-providers-home",
           element: <ServiceProvidersHome />,
         },
-        { path: "auth", element: <ServiceProviderRegisterForm /> },
+        { path: "auth", element: <ServiceProviderSignInForm /> },
+        { path: "auth/sign-up", element: <ServiceProviderRegisterForm /> },
         { path: "auth/user", element: <UserSignUpForm /> },
       ],
     },
@@ -33,7 +34,6 @@ const App = () => {
   return (
     <UserProvider>
       <RouterProvider router={router}></RouterProvider>
-      {/* <Footer /> */}
     </UserProvider>
   );
 };

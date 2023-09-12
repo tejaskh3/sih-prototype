@@ -1,16 +1,27 @@
 import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import classes from "./FirstBanner.module.css";
 
 const FirstBanner = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
 
   return (
-    <Grid container direction={{ xs: "column-reverse", md: "row" }} sx={{ padding: {xs: "0", md: "0 6rem"}}}>
-      <Grid item xs={12} md={6} sx={{ background: theme.palette.secondary.main, p: "8% 5%" }}>
+    <Grid
+      container
+      direction={{ xs: "column-reverse", md: "row" }}
+      sx={{ padding: { xs: "0", md: "0 6rem" } }}
+    >
+      <Grid
+        item
+        xs={12}
+        md={6}
+        sx={{ background: theme.palette.secondary.main, p: "8% 5%" }}
+      >
         <Typography sx={{ fontFamily: "Poppins, sans-serif" }}>
           <Typography variant="h2" sx={{ fontWeight: 700, m: "2% 0" }}>
             India’s{" "}
-            <Box component={"span"} sx={{ color: theme.palette.primary.main}}>
+            <Box component={"span"} sx={{ color: theme.palette.primary.main }}>
               #1
             </Box>
           </Typography>
@@ -22,16 +33,23 @@ const FirstBanner = () => {
           </Typography>
         </Typography>
         <Button
+          onClick={()=>navigate("/auth")}
           variant="contained"
           size="large"
           sx={{ textTransform: "none", m: "2% 0", p: "2% 8%" }}
         >
-          <Typography fontSize={22} sx={{color: "#ffffff"}}>Get Started</Typography>
+          <Typography fontSize={22} sx={{ color: "#ffffff" }}>
+            Get Started
+          </Typography>
         </Button>
       </Grid>
 
       <Grid item xs={12} md={6}>
-        <Box component={"div"} className={classes.image} sx={{backgroundSize: {xs: "cover", md:"none"}}}></Box>
+        <Box
+          component={"div"}
+          className={classes.image}
+          sx={{ backgroundSize: { xs: "cover", md: "none" } }}
+        ></Box>
       </Grid>
     </Grid>
   );

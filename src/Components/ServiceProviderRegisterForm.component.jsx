@@ -1,59 +1,57 @@
-import React, { useState } from 'react';
-import authImageProviders from '../assets/left-bg-service-auth.png';
-
 import {
   Box,
+  Button,
   Grid,
-  Input,
-  Typography,
-  TextField,
   MenuItem,
-  Button
-} from '@mui/material';
+  TextField,
+  Typography,
+} from "@mui/material";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
-  signInWithGooglePopup,
   createServiceProviderDocumentFromAuth,
-  createProviderFromEmailAndPassword,
-  createUserFromEmailAndPassword
-} from '../utils/firebase/firebase.utils';
+  createUserFromEmailAndPassword,
+} from "../utils/firebase/firebase.utils";
+import styles from "./ServiceProviderRegister.module.css";
 
 const serviceProviders = [
   {
-    value: 'advocate',
-    label: 'Advocate'
+    value: "advocate",
+    label: "Advocate",
   },
   {
-    value: 'mediator',
-    label: 'Mediator'
+    value: "mediator",
+    label: "Mediator",
   },
   {
-    value: 'notery',
-    label: 'Notery'
+    value: "notary",
+    label: "Notary",
   },
   {
-    value: 'LegalFirm',
-    label: 'Legal Frim'
-  }
+    value: "LegalFirm",
+    label: "Legal Firm",
+  },
 ];
 
 const defaultCredentials = {
-  displayName: '',
-  email: '',
-  password: '',
-  role: '',
-  barCouncilId: ''
+  displayName: "",
+  email: "",
+  password: "",
+  role: "",
+  barCouncilId: "",
 };
 const ServiceProviderRegisterForm = () => {
+  const navigate = useNavigate();
   const [registerCredentials, setRegisterCredentials] =
     useState(defaultCredentials);
   const { displayName, email, password, role, barCouncilId } =
     registerCredentials;
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setRegisterCredentials({ ...registerCredentials, [name]: value });
   };
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(email);
     console.log(password);
@@ -68,66 +66,46 @@ const ServiceProviderRegisterForm = () => {
       console.log(ref);
       setRegisterCredentials(defaultCredentials);
     } catch (error) {
-      if (error.code === 'auth/email-already-in-use') {
-        alert('email already in use');
+      if (error.code === "auth/email-already-in-use") {
+        alert("email already in use");
         return;
       }
-      if (error.code === 'auth/weak-password') {
-        alert('password is too weak keep at least 6 words');
+      if (error.code === "auth/weak-password") {
+        alert("password is too weak keep at least 6 words");
         return;
       }
       console.log('error registering the service provider', error.message);
     }
   };
-  const handleGooglePopup = async () => {
-    const res = await signInWithGooglePopup();
-    console.log(res.user);
-    const ref = await createServiceProviderDocumentFromAuth(
-      res.user,
-      registerCredentials
-    );
-    console.log('service-provider ref', ref);
-  };
+
   return (
-    <Grid container spacing={1} color={'black'} x>
-      <Grid item xs={6} md={7}>
-        <Box
-          component="div"
-          sx={{
-            backgroundImage: `url(${authImageProviders})`,
-            backgroundRepeat: 'no-repeat',
-            marginTop: '0',
-            backgroundPosition: 'top',
-            height: '100px',
-            width: '100%',
-            backgroundSize: 'contain',
-            background: 'red'
-          }}
-        >
-          {/* <img
-            src={authImageProviders}
-            alt=""
-            styles={{ marginTop: '0', innerHeight: '80px' }}
-          /> */}
-        </Box>
+    <Grid container minHeight={"90vh"}>
+      <Grid item xs={0} md={7}>
+        <Box component="div" className={styles.image}></Box>
       </Grid>
-      <Grid item xs={6} md={4}>
-        <Typography variant="h1" fontSize={'42px'} color={'rgba(18,17,39,.75)'}>
-          Signing Up
+
+      <Grid item xs={12} md={5} px={{ xs: 3, md: 10 }} py={{ xs: 8, md: 15 }}>
+        <Typography
+          variant="h1"
+          fontWeight={"bolder"}
+          fontSize={"42px"}
+          color={"rgba(18,17,39,.75)"}
+        >
+          Register
         </Typography>
-        <Typography variant="p" color={'rgba(18,17,39,.75)'}>
-          Welcome to out legal duniya.
+        <Typography variant="p" color={"rgba(18,17,39,.75)"}>
+          Welcome to our Legal Duniya.
         </Typography>
         <Box
-          component={'form'}
+          component={"form"}
           container
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            gap: '10px',
-            marginTop: '30px',
-            textAlign: 'center'
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            gap: "10px",
+            marginTop: "30px",
+            textAlign: "center",
           }}
         >
           <TextField
@@ -171,7 +149,7 @@ const ServiceProviderRegisterForm = () => {
             required
             onChange={handleChange}
           >
-            {serviceProviders.map(option => (
+            {serviceProviders.map((option) => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
@@ -187,42 +165,46 @@ const ServiceProviderRegisterForm = () => {
             onChange={handleChange}
           />
           <Box
-            component={'div'}
+            component={"div"}
             sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              gap: '20%'
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              gap: "20%",
             }}
           >
-            <Button type="submit" variant="contained" onClick={handleSubmit}>
+            <Button
+              type="submit"
+              size="large"
+              variant="contained"
+              onClick={handleSubmit}
+              sx={{ textTransform: "none" }}
+            >
               Register
             </Button>
           </Box>
           <Box
-            component={'div'}
+            component={"div"}
+            color="black"
             sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'center',
-              marginTop: '5px'
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: "5px",
             }}
           >
-            <Typography variant="span">Didn't have account yet? </Typography>
-            <Typography
-              // variant="h6"
-              // textAlign={'center'}
+            <Typography variant="span">Already have an account ? </Typography>
+            <Button
+              onClick={() => navigate("/auth")}
+              color="secondary"
               sx={{
-                '&:hover': {
-                  transform: 'scale(1.2)',
-                  transition: 'ease all 1.3s',
-                  backgroundColor: '#3f43c8',
-                  borderRadius: '5px',
-                  color: '#fff'
-                }
+                fontSize: "inherit",
+                textTransform: "none",
               }}
             >
-              Create Account
-            </Typography>
+              Sign in
+            </Button>
           </Box>
         </Box>
       </Grid>

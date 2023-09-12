@@ -6,6 +6,7 @@ import ServiceProviderSignInForm from './Components/ServiceProviderSignIn.compon
 import ServiceProviderRegisterForm from './Components/ServiceProviderRegisterForm.component';
 import UserSignInForm from './Components/UserSignInForm.component';
 import Advocates from './components/Advocates.component';
+import Mediators from './components/Mediators.component';
 // UserSignInForm;
 
 const App = () => {
@@ -39,8 +40,11 @@ const App = () => {
   //   </>
   // );
   return(
+    <>
+    {/* <Advocates/> */}
+    <Mediators/>
+    </>
 
-    <Advocates/>
   )
 };
 

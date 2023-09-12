@@ -59,9 +59,9 @@ function Advocate({
           <ButtonBase
             sx={{
               width: 130,
-              height: 128,
+              height: 140,
               borderRadius: "20px",
-              marginX: "25px",
+              marginX:"25px",
               overflow: "hidden",
               boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
               transition: "transform 0.2s ease-in-out",
@@ -149,7 +149,7 @@ function Advocate({
                   cursor: "pointer",
                   fontWeight: "bold",
                   color: "#3237cf",
-                  margin: "0 8px 0 0", // Adjusted margin for better spacing
+                  margin: "0 30px 0 0", // Adjusted margin for better spacing
                   padding: "9px 8px 0px 8px", // Added padding for better readability
                   border: "1px solid #3056d3", // Increased border width for visibility
                   borderRadius: "5px",
@@ -181,7 +181,7 @@ function Advocate({
                   justifyContent: "center",
                   alignItems: "center",
                   borderRadius: "5px",
-                  margin: "0 10px 0 0", // Adjusted margin for better spacing
+                  margin: "0 30px 0 0", // Adjusted margin for better spacing
                   padding: "0 10px", // Added padding for better readability
                   backgroundColor: "#f0fff0", // Added a background color for better visibility
                   boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)", // Optional: Add a subtle shadow
@@ -267,58 +267,60 @@ function Advocate({
   );
 }
 
-export default function Advocates() {
+export default function Mediators() {
+
   const advocates = [
     {
-      name: "Mishi Choudhary",
-      city: "Hyderabad, Telangana",
+      name: "Rashmi Gulati",
+      city: "Civil Lines, Delhi",
       experience: "7",
       language: "Hindi, English",
       rating: "4.2",
       callcharge: "15",
-      skill: ["Civil Matters", "Property & Real Estate"],
+      skill: ["Conflict resolution", "Communication improvement"],
       image:
-        "https://imageio.forbes.com/specials-images/imageserve/5f9994fa44131b4c93e33288/0x0.jpg?format=jpg&crop=3620,3620,x0,y426,safe&width=1200",
+        "https://images.unsplash.com/photo-1607189200597-4d0923ef98c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW5kaWFuJTIwd29tZW58ZW58MHx8MHx8fDA%3D&w=1000&q=80",
     },
     {
-      name: "Harish Salve",
-      city: "Gurgaon, Haryana",
+      name: "G.K. Marwah",
+      city: "Dwarka, Delhi",
       experience: "5",
       language: "English, Bengali",
       rating: "5",
       callcharge: "30",
-      skill: ["Cyber Crime", "Child Custody"],
+      skill: ["Dispute resolution", "Agreement facilitation"],
       image:
-        "https://mattersindia.com/wp-content/uploads/2023/07/jose-abraham1.jpg",
+        "https://media.licdn.com/dms/image/C4E03AQF33rkwlMfPNA/profile-displayphoto-shrink_800_800/0/1646215587279?e=2147483647&v=beta&t=GdiOg7fAdF_hFB5FEKzxDvrM-HE-jE8ZaJ2aC5tym2M",
     },
     {
-      name: "Meenakshi Lekhi",
+      name: "Madhvi Kulshreshta",
       city: "Bangalore, Karnataka",
       experience: "24",
       language: "Hindi, Bengali, Marathi",
-      rating: "4.2",
+      rating: "4.3",
       callcharge: "90",
-      skill: ["Criminal Cases", "Other Legal Problem"],
+      skill: ["Relationship mending", "Decision-making support"],
       image:
-        "https://media.istockphoto.com/id/1326920136/photo/shot-of-a-business-women-using-laptop-working-at-home-stock-photo.jpg?s=612x612&w=0&k=20&c=tDhOPNMfBUlZLy5titrUrOXfHVbhVosEoQveTwuuL1Y=",
+        "https://media.istockphoto.com/id/1213300831/photo/senior-woman-looking-at-camera.jpg?s=612x612&w=0&k=20&c=5PoBMM0PNjh3wffxbWGIO6-gjc0M8t6ukOPsekRBlzc=",
     },
     {
-      name: "Mukul Rohatgi",
+      name: "Sanjay Sharma",
       city: "Kolkata, West Bengal",
       experience: "7",
       language: "Hindi, English",
       rating: "4.2",
       callcharge: "20",
-      image: "https://miro.medium.com/v2/resize:fit:320/0*e1ck6_6iwVXb3Ldc.jpg",
-      skill: ["Company & Startups", "Divorce"],
+      image:
+        "https://st.depositphotos.com/1093689/1373/i/450/depositphotos_13736150-stock-photo-close-up-image-of-happy.jpg",
+      skill: ["Impartial guidance", "Collaborative problem-solving"],
     },
   ];
 
   return (
-    <div>
+    <>  
       {advocates.map((advocate, index) => (
         <Advocate key={index} {...advocate} />
       ))}
-    </div>
+    </>
   );
 }

@@ -9,11 +9,11 @@ import Advocates from './components/Advocates.component';
 const App = () => {
   return (
     <>
-      {/* <OutlinedCard />
+      <OutlinedCard />
       <ActionAreaCard />
       <Testimonials/>
-      <Footer/> */}
-      <Advocates/>
+      <Footer/>
+      {/* <Advocates/> */}
     </>
 
   );

@@ -1,0 +1,9 @@
+.image {
+  background-image: url("../assets/user-login-bg.jpg");
+  background-repeat: "no-repeat";
+  min-height: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+
+}

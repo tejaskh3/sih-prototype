@@ -1,8 +1,9 @@
+import { CardActionArea } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
 
 export default function ActionAreaCard() {
   const providers = [
@@ -70,45 +71,43 @@ export default function ActionAreaCard() {
         " Firms offer a wide range of legal services, catering to multinational corporations, governments, and high-net-worth individuals.",
     },
   ];
+
   return (
     <>
       <Typography
         variant="h4"
         gutterBottom
+        color="#121122b3"
         sx={{
           fontWeight: "bold",
-          color: "blue",
           fontSize: "40px",
-          textShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)",
           textAlign: "center",
-          padding: "50px 0",
+          paddingTop: "50px",
         }}
       >
         Service Providers
       </Typography>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "30px",
-          justifyContent: "center",
-        }}
+
+      <Stack
+        direction={{ xs: "column", md: "row" }}
+        flexWrap="wrap"
+        justifyContent="center"
+        gap={3}
+        py={3}
+        px={{ xs: 2, md: 8 }}
+        mx={{ md: 3 }}
+        borderRadius={{ md: 8 }}
+        bgcolor={"#6068db12"}
       >
         {providers.map((provider, index) => (
           <Card
             sx={{
-              maxWidth: "calc(33.33% - 100px)",
               flexBasis: "calc(33.33% - 20px)",
               transition: "transform 0.2s",
-              marginY: "40px",
+              marginY: "20px",
               borderRadius: "20px",
-              outline: "1px solid black",
-              border: "1px solid black",
-              height: "400px",
               "&:hover": {
-                transform: "scale(1.03)",
-                boxShadow: "0px 4px 10px rgba(0, 0, 255, 0.4)",
-                border: "2px solid blue",
+                transform: "translateY(-5px)",
               },
             }}
             key={index}
@@ -132,26 +131,7 @@ export default function ActionAreaCard() {
             </CardActionArea>
           </Card>
         ))}
-      </div>
-      <style>
-        {/* {`
-          @media (max-width: 768px) {
-            .image_1{
-              width: 80%;
-              padding-left:50px;
-              padding-top:2px;
-            }
-            div {
-              flex-direction: column;
-              align-items: center;
-            }
-            .MuiCard-root {
-              flex-basis: 100%;
-              max-width: 80%;
-            }
-          }
-        `} */}
-      </style>
+      </Stack>
     </>
   );
 }

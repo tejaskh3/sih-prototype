@@ -24,9 +24,9 @@ const FirstBanner = () => {
         <Button
           variant="contained"
           size="large"
-          sx={{ textTransform: "none", m: "2% 0", p: "2% 6%" }}
+          sx={{ textTransform: "none", m: "2% 0", p: "2% 8%" }}
         >
-          <Box sx={{color: "#ffffff"}}>Get Started</Box>
+          <Typography fontSize={22} sx={{color: "#ffffff"}}>Get Started</Typography>
         </Button>
       </Grid>
 

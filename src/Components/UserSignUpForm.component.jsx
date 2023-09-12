@@ -26,7 +26,7 @@ const defaultUser = {
   role: 'user',
   password: ''
 };
-import { UserContext } from '../context/User.Context';
+// import {currentUser, setCurrentUser} from '../context/User.Context'
 const UserSignUpForm = () => {
   const [userDetails, setUserDetails] = useState(defaultUser);
   const { displayName, email, password } = userDetails;

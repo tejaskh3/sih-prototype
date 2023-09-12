@@ -6,6 +6,7 @@ import { UserProvider } from "./context/User.Context";
 import HomePage from "./pages/HomePage";
 import RootLayout from "./pages/RootLayout";
 import ServiceProvidersHome from "./pages/service-providers/ServiceProvidersHome";
+import UserSignInForm from "./components/UserSignInForm.component";
 const App = () => {
   const router = createBrowserRouter([
     {
@@ -26,7 +27,8 @@ const App = () => {
         },
         { path: "auth", element: <ServiceProviderSignInForm /> },
         { path: "auth/sign-up", element: <ServiceProviderRegisterForm /> },
-        { path: "auth/user", element: <UserSignUpForm /> },
+        { path: "auth/user", element: <UserSignInForm /> },
+        { path: "auth/user/sign-up", element: <UserSignUpForm /> },
       ],
     },
   ]);

@@ -1,35 +1,34 @@
 import {
-  Button,
-  TextField,
-  FormControlLabel,
-  Checkbox,
-  Link,
-  Grid,
   Box,
+  Button,
+  Checkbox,
+  Container,
+  FormControlLabel,
+  Link,
+  TextField,
   Typography,
-  Container
-} from '@mui/material';
-import { useState } from 'react';
+} from "@mui/material";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
-  createUserFromEmailAndPassword,
+  signInUserWithEmailAndPassword,
   signInWithGooglePopup,
-  createUserDocumentFromAuth,
-  signInUserWithEmailAndPassword
-} from '../utils/firebase/firebase.utils';
+} from "../utils/firebase/firebase.utils";
 
 const defaultUser = {
-  email: '',
-  password: ''
+  email: "",
+  password: "",
 };
 const UserSignInForm = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState(defaultUser);
   const { email, password } = user;
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
   };
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // setUser({ ...user, role: 'user' });
     const res = await signInUserWithEmailAndPassword(email, password);
@@ -40,7 +39,7 @@ const UserSignInForm = () => {
       const res = await signInWithGooglePopup();
       console.log(res.user);
     } catch (error) {
-      console.log('error signing with google', error.message);
+      console.log("error signing with google", error.message);
     }
   };
   return (
@@ -48,23 +47,23 @@ const UserSignInForm = () => {
       component="main"
       maxWidth="xs"
       sx={{
-        color: 'black',
+        color: "black",
         boxShadow:
-          'rgba(0, 0, 0, 0.24) 0px 3px 8px;rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px',
-        borderRadius: '5px',
-        width: 'content-fit'
-        // padding:'',
+          "rgba(0, 0, 0, 0.24) 0px 3px 8px;rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
+        borderRadius: "5px",
+        width: "content-fit",
       }}
     >
       <Box
+        py={5}
         sx={{
           marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center'
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        <Typography component="h1" fontSize={'42px'}>
+        <Typography component="h1" fontSize={"42px"}>
           Sign in
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -98,40 +97,46 @@ const UserSignInForm = () => {
           />
           <Box
             sx={{
-              display: 'flex',
-              // gap: '30px',
-              justifyContent: 'space-around'
+              display: "flex",
+              flexDirection: "column",
             }}
           >
             <Button
               type="submit"
-              onClick={handleSubmit}
+              color="secondary"
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              size="large"
+              onClick={handleSubmit}
+              sx={{ mt: 3, textTransform: "none" }}
             >
               Sign In
             </Button>
             <Button
               type="button"
+              size="large"
               variant="contained"
-              sx={{ mt: 3, mb: 2, backgroundColor: 'blue' }}
+              sx={{ mt: 3, mb: 2, textTransform: "none" }}
               onClick={handleGooglePopup}
             >
               Sign In With Google
             </Button>
           </Box>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Link sx={{ textAlign: "center" }} href="#" variant="body2">
+              Forgot password?
+            </Link>
+            <Button
+              onClick={() => navigate("/auth/user/sign-up")}
+              variant="body2"
+            >
+              {"Don't have an account? Sign Up"}
+            </Button>
+          </Box>
         </Box>
       </Box>
     </Container>
@@ -139,5 +144,3 @@ const UserSignInForm = () => {
 };
 
 export default UserSignInForm;
-
-

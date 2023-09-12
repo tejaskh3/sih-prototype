@@ -76,11 +76,7 @@ const ServiceProviderRegisterForm = () => {
         alert('password is too weak keep at least 6 words');
         return;
       }
-      console.log('error registering the service provider', {
-        error,
-        success: false,
-        msg: error.message
-      });
+      console.log('error registering the service provider', error.message);
     }
   };
   const handleGooglePopup = async () => {

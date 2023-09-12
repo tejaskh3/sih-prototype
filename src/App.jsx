@@ -26,6 +26,7 @@ const App = () => {
           element: <ServiceProvidersHome />
         },
         { path: 'auth', element: <ServiceProviderSignInForm/> },
+        { path: 'auth/sign-up', element: <ServiceProviderRegisterForm/> },
         { path: 'auth/user', element: <UserSignInForm/> }
       ]
     }

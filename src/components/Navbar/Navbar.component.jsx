@@ -29,7 +29,9 @@ const Navbar = () => {
     location.pathname === "/service-providers-home" ? "/auth/" : "/auth/user";
 
   const dynamicBtnText =
-    location.pathname === "/service-providers-home" ? "Provider Login" : "User Login";
+    location.pathname === "/service-providers-home"
+      ? "Provider Login"
+      : "User Login";
 
   const navLinks = [
     {
@@ -93,7 +95,7 @@ const Navbar = () => {
                 navigate("/service-providers-home");
               }}
             >
-              Lawyers Click Here
+              Providers Click Here
             </Button>
           </ListItem>
         )}
@@ -155,7 +157,7 @@ const Navbar = () => {
                   onClick={() => navigate("/service-providers-home")}
                   sx={{ textTransform: "none", fontWeight: "bolder" }}
                 >
-                  Lawyers Click Here
+                  Providers Click Here
                 </Button>
               )}
               <Button

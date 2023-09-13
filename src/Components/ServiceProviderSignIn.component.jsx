@@ -20,10 +20,10 @@ const ServiceProviderSignInForm = () => {
     setLoginCredentials({ ...loginCredentials, [name]: value });
   };
   const handleSubmit = async (e) => {
-    if (!email || !password) {
-      alert("");
-    }
     e.preventDefault();
+    if (!email || !password) {
+      alert("Please fill all the given fields!");
+    }
     try {
       const res = await signInProviderWithEmailAndPassword(email, password);
       console.log(res);
@@ -125,9 +125,9 @@ const ServiceProviderSignInForm = () => {
               marginTop: "5px",
             }}
           >
-            <Typography>Don't have an account yet? </Typography>
+            <Typography>{"Don't have an account yet?"}</Typography>
             <Button
-              onClick={()=>navigate("sign-up")}
+              onClick={() => navigate("sign-up")}
               color="secondary"
               sx={{
                 fontSize: "inherit",

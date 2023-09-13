@@ -1,6 +1,5 @@
 .image {
-
-  background-image: url("service-providers/new-client.png");
+  background-image: url("../../../assets/service-providers/new-client.png");
   background-repeat: no-repeat;
   min-height: 400px;
   height: 100%;

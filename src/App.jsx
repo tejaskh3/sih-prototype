@@ -1,41 +1,42 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import RootLayout from './pages/RootLayout';
-import ServiceProvidersHome from './pages/service-providers/ServiceProvidersHome';
-import ServiceProviderSignInForm from './Components/ServiceProviderSignIn.component';
-import ServiceProviderRegisterForm from './Components/ServiceProviderRegisterForm.component';
-import UserSignInForm from './Components/UserSignInForm.component';
-import UserSignUpForm from './Components/UserSignUpForm.component';
-import { UserProvider } from './context/User.Context';
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import ServiceProviderRegisterForm from "./components/ServiceProviderRegisterForm.component";
+import ServiceProviderSignInForm from "./components/ServiceProviderSignIn.component";
+import UserSignUpForm from "./components/UserSignUpForm.component";
+import { UserProvider } from "./context/User.Context";
+import HomePage from "./pages/HomePage";
+import RootLayout from "./pages/RootLayout";
+import ServiceProvidersHome from "./pages/service-providers/ServiceProvidersHome";
+import UserSignInForm from "./components/UserSignInForm.component";
 const App = () => {
   const router = createBrowserRouter([
     {
-      path: '/',
+      path: "/",
       element: <RootLayout />,
       children: [
         {
           index: true,
-          element: <HomePage />
+          element: <HomePage />,
         },
         {
           index: true,
-          element: <HomePage />
+          element: <HomePage />,
         },
         {
-          path: 'service-providers-home',
-          element: <ServiceProvidersHome />
+          path: "service-providers-home",
+          element: <ServiceProvidersHome />,
         },
-        { path: 'auth', element: <ServiceProviderRegisterForm /> },
-        { path: 'auth/user', element: <UserSignUpForm /> }
-      ]
-    }
+        { path: "auth", element: <ServiceProviderSignInForm /> },
+        { path: "auth/sign-up", element: <ServiceProviderRegisterForm /> },
+        { path: "auth/user", element: <UserSignInForm /> },
+        { path: "auth/user/sign-up", element: <UserSignUpForm /> },
+      ],
+    },
   ]);
 
   return (
-    <>
-      <RouterProvider router={router}></RouterProvider>;
-      {/* <Footer /> */}
-    </>
+    <UserProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </UserProvider>
   );
 };
 

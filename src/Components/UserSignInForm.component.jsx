@@ -1,20 +1,18 @@
 import {
-  Button,
-  TextField,
-  FormControlLabel,
-  Checkbox,
-  Link,
-  Grid,
   Box,
-  Typography,
-  Container
+  Button,
+  Checkbox,
+  Container,
+  FormControlLabel,
+  Link,
+  TextField,
+  Typography
 } from '@mui/material';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
-  createUserFromEmailAndPassword,
-  signInWithGooglePopup,
-  createUserDocumentFromAuth,
-  signInUserWithEmailAndPassword
+  signInUserWithEmailAndPassword,
+  signInWithGooglePopup
 } from '../utils/firebase/firebase.utils';
 
 const defaultUser = {
@@ -22,6 +20,7 @@ const defaultUser = {
   password: ''
 };
 const UserSignInForm = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState(defaultUser);
   const { email, password } = user;
 
@@ -57,14 +56,17 @@ const UserSignInForm = () => {
       // }}
     >
       <Box
-        sx={{
-          // marginTop: 8,
-          // display: 'flex',
-          // flexDirection: 'column',
-          // alignItems: 'center'
-        }}
+        py={5}
+        sx={
+          {
+            // marginTop: 8,
+            // display: 'flex',
+            // flexDirection: 'column',
+          }
+        }
       >
-        <Typography component="h1" fontSize={'42px'}>
+        <Typography component="h1" fontSize={'42px'} color={'#000'}
+        sx={{textAlign:'center'}}>
           Sign in
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -99,39 +101,45 @@ const UserSignInForm = () => {
           <Box
             sx={{
               display: 'flex',
-              // gap: '30px',
-              justifyContent: 'space-around'
+              flexDirection: 'column'
             }}
           >
             <Button
               type="submit"
-              onClick={handleSubmit}
+              color="secondary"
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              size="large"
+              onClick={handleSubmit}
+              sx={{ mt: 3, textTransform: 'none' }}
             >
               Sign In
             </Button>
             <Button
               type="button"
+              size="large"
               variant="contained"
-              sx={{ mt: 3, mb: 2, backgroundColor: 'blue' }}
+              sx={{ mt: 3, mb: 2, textTransform: 'none' }}
               onClick={handleGooglePopup}
             >
               Sign In With Google
             </Button>
           </Box>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column'
+            }}
+          >
+            <Link sx={{ textAlign: 'center' }} href="#" variant="body2">
+              Forgot password?
+            </Link>
+            <Button
+              onClick={() => navigate('/auth/user/sign-up')}
+              variant="body2"
+            >
+              {"Don't have an account? Sign Up"}
+            </Button>
+          </Box>
         </Box>
       </Box>
     </Container>
@@ -139,5 +147,3 @@ const UserSignInForm = () => {
 };
 
 export default UserSignInForm;
-
-

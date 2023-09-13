@@ -30,7 +30,7 @@ const defaultUser = {
 const UserSignUpForm = () => {
   const [userDetails, setUserDetails] = useState(defaultUser);
   const { displayName, email, password } = userDetails;
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+
   const [signIn, setSignIn] = useState(false);
   const handleChange = e => {
     const { name, value } = e.target;
@@ -47,7 +47,6 @@ const UserSignUpForm = () => {
       console.log('user created');
       setUserDetails(defaultUser);
       console.log(currentUser);
-      setCurrentUser(currentUser);
       console.log(currentUser);
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {

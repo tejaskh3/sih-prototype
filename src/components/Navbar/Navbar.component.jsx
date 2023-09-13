@@ -12,11 +12,15 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { Box } from "@mui/system";
+import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/User.Context";
 import classes from "./Navbar.module.css";
+import HomePage from "../../pages/HomePage";
 
 const Navbar = () => {
+  const [currentUser, setCurrentUser] = useContext(UserContext);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -60,9 +64,12 @@ const Navbar = () => {
     <>
       <AppBar color="white">
         <Toolbar sx={{ justifyContent: "space-between" }}>
-          <Typography>
+          <Box>
+            <img src="../../assets/logo.png" alt="logo" />
+          </Box>
+          {/* <Typography>
             <i>Logo here</i>
-          </Typography>
+          </Typography> */}
           <Button onClick={toggleDrawer} sx={{ color: "black" }}>
             <CloseIcon />
           </Button>
@@ -99,18 +106,20 @@ const Navbar = () => {
             </Button>
           </ListItem>
         )}
-        <ListItem>
-          <Button
-            color="secondary"
-            onClick={() => {
-              toggleDrawer();
-              navigate(dynamicBtnRoute);
-            }}
-            sx={{ fontWeight: "bolder", textTransform: "none" }}
-          >
-            {dynamicBtnText}
-          </Button>
-        </ListItem>
+        {currentUser && (
+          <ListItem>
+            <Button
+              color="secondary"
+              onClick={() => {
+                toggleDrawer();
+                navigate(dynamicBtnRoute);
+              }}
+              sx={{ fontWeight: "bolder", textTransform: "none" }}
+            >
+              {dynamicBtnText}
+            </Button>
+          </ListItem>
+        )}
       </List>
     </>
   );
@@ -118,10 +127,8 @@ const Navbar = () => {
     <>
       <AppBar color="white" sx={{ px: { md: 12 } }} position="fixed">
         <Toolbar sx={{ justifyContent: "space-between" }}>
-          <IconButton>
-            <Typography>
-              <i>Logo here</i>
-            </Typography>
+          <IconButton  LinkComponent={<HomePage />}>
+              <img src="/src/assets/logo.png" alt="logo" width={"150px"} />
           </IconButton>
 
           {/* navbar for PC */}

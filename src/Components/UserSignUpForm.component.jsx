@@ -9,9 +9,10 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import authBanner from "../assets/auth-banner.png";
+import { UserContext } from "../context/User.Context";
 import {
   createUserDocumentFromAuth,
   createUserFromEmailAndPassword,
@@ -25,9 +26,16 @@ const defaultUser = {
 };
 // import {currentUser, setCurrentUser} from '../context/User.Context'
 const UserSignUpForm = () => {
+  const [currentUser, setCurrentUser] = useContext(UserContext);
   const navigate = useNavigate();
   const [userDetails, setUserDetails] = useState(defaultUser);
   const { displayName, email, password } = userDetails;
+
+  useEffect(() => {
+    if (currentUser.accessToken !== null) {
+      navigate("/user/home", {replace: true});
+    }
+  }, [currentUser, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -54,6 +62,7 @@ const UserSignUpForm = () => {
       console.log("error registering the user", error.message);
     }
   };
+
   const handleGooglePopup = async () => {
     try {
       const { user } = await signInWithGooglePopup();
@@ -63,6 +72,7 @@ const UserSignUpForm = () => {
       console.log("error in google popup while registering", error.message);
     }
   };
+
   return (
     <Grid container component="main" sx={{ height: "100vh" }}>
       <CssBaseline />
@@ -82,7 +92,7 @@ const UserSignUpForm = () => {
           backgroundPosition: "center",
         }}
       />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square py={5}>
         <Box
           sx={{
             my: 0,

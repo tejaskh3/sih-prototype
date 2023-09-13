@@ -8,8 +8,9 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/User.Context";
 import {
   signInUserWithEmailAndPassword,
   signInWithGooglePopup,
@@ -20,28 +21,43 @@ const defaultUser = {
   password: "",
 };
 const UserSignInForm = () => {
+  const [currentUser, setCurrentUser] = useContext(UserContext);
   const navigate = useNavigate();
   const [user, setUser] = useState(defaultUser);
   const { email, password } = user;
+
+  useEffect(() => {
+    if (currentUser.accessToken !== null) {
+      navigate("/user/home", { replace: true });
+    }
+  }, [currentUser, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // setUser({ ...user, role: 'user' });
     const res = await signInUserWithEmailAndPassword(email, password);
     console.log(res);
   };
+
   const handleGooglePopup = async () => {
     try {
       const res = await signInWithGooglePopup();
-      console.log(res.user);
+      localStorage.setItem("accessToken", res.user.accessToken);
+      setCurrentUser({
+        name: res.user.displayName,
+        accessToken: res.user.accessToken,
+      });
+      // console.log(res.user.accessToken);
     } catch (error) {
       console.log("error signing with google", error.message);
     }
   };
+
   return (
     <Container component="main" maxWidth="xs">
       <Box py={5}>

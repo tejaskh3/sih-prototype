@@ -34,7 +34,7 @@ function Advocate({
         p: 3,
         margin: "40px auto",
         border: "2px solid #B19CD9",
-        width: "80%",
+        width: "75%",
         height: "auto",
         boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
         borderRadius: "9px",
@@ -61,7 +61,7 @@ function Advocate({
               width: 130,
               height: 140,
               borderRadius: "20px",
-              marginX:"25px",
+              marginX: "25px",
               overflow: "hidden",
               boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
               transition: "transform 0.2s ease-in-out",
@@ -148,6 +148,7 @@ function Advocate({
                 sx={{
                   cursor: "pointer",
                   fontWeight: "bold",
+                  fontFamily: "Poppins",
                   color: "#3237cf",
                   margin: "0 30px 0 0", // Adjusted margin for better spacing
                   padding: "9px 8px 0px 8px", // Added padding for better readability

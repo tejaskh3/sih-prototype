@@ -8,6 +8,7 @@ import UserSignInForm from './Components/UserSignInForm.component';
 import Advocates from './components/Advocates.component';
 import Mediators from './components/Mediators.component';
 import Notary from './components/Notary.component';
+import Startup from './components/Startup.component';
 // UserSignInForm;
 
 const App = () => {
@@ -42,9 +43,10 @@ const App = () => {
   // );
   return(
     <>
-    <Advocates/>
-    <Mediators/>
+    {/* <Advocates/> */}
+    {/* <Mediators/> */}
     {/* <Notary/> */}
+    <Startup/>
     </>
 
   )

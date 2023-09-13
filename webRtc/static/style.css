@@ -1,0 +1,64 @@
+body {
+    background-image: url("https://assets.architecturaldigest.in/photos/600820453a9d9570bc840c0a/16:9/w_1920,c_limit/interior-design-office-space-studio-course1-1366x768.jpg");
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.Name-Page {
+    width: 400px;
+    padding: 10% 0 0 0;
+    margin: auto;
+}
+
+.form {
+    position: relative;
+    z-index: 1;
+    background-color: white;
+    max-width: 200px;
+    margin: 0 auto 100px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border-radius: 5px;
+}
+
+.form input {
+    font-family: "Roboto", "sans-serif";
+    outline: 1;
+    background: rgb(226, 218, 218);
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 14px;
+    border-radius: 3px;
+}
+
+.form button {
+    font-family: "Roboto", "sans-serif";
+    outline: 0;
+    background: #4CAF50;
+    width: 100%;
+    border: 0;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.form p {
+    font-family: "Roboto", "sans-serif";
+    font-size: 60%;
+    margin: 15px
+}
+
+.form button:hover {
+    background: #43A047
+}
+
+.form .unknown-form {
+    display: none
+}

@@ -1,0 +1,20 @@
+{
+    "name": "audio-video-consultancy",
+    "version": "0.1",
+    "description": "audi and video communication between client and service providers.",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "ejs": "^3.1.6",
+        "express": "^4.17.1",
+        "peer": "^0.5.3",
+        "socket.io": "^2.3.0",
+        "uuid": "^8.3.2"
+    }
+}

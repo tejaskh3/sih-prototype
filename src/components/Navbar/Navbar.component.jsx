@@ -27,7 +27,7 @@ const Navbar = () => {
 
   const dynamicBtnRoute =
     location.pathname === "/service-providers-home" ? "/auth/" : "/auth/user";
-  
+
   const dynamicBtnText =
     location.pathname === "/service-providers-home" ? "Provider Login" : "User Login";
 
@@ -178,7 +178,7 @@ const Navbar = () => {
             </Button>
           </Stack>
         </Toolbar>
-
+        <a href='http://localhost:3030/'>consult</a>
         {/* navbar for Mobile */}
         <Drawer
           variant="temporary"

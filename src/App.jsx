@@ -9,6 +9,7 @@ import Advocates from './components/Advocates.component';
 import Mediators from './components/Mediators.component';
 import Notary from './components/Notary.component';
 import Startup from './components/Startup.component';
+import Property from './components/Property.component';
 // UserSignInForm;
 
 const App = () => {
@@ -46,7 +47,8 @@ const App = () => {
     {/* <Advocates/> */}
     {/* <Mediators/> */}
     {/* <Notary/> */}
-    <Startup/>
+    {/* <Startup/> */}
+    <Property/>
     </>
 
   )

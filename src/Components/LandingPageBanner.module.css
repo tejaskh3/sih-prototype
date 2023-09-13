@@ -1,0 +1,14 @@
+.outer-div {
+  background-image: url("../assets/landing-page.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.image{
+  background-image: url("../assets/landing-page.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 100%;
+}

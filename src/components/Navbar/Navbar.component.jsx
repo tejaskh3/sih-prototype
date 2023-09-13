@@ -180,7 +180,7 @@ const Navbar = () => {
             </Button>
           </Stack>
         </Toolbar>
-        <a href='http://localhost:3030/'>consult</a>
+        {/* <a href='http://localhost:3030/'>consult</a> */}
         {/* navbar for Mobile */}
         <Drawer
           variant="temporary"

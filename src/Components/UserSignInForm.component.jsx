@@ -6,29 +6,29 @@ import {
   FormControlLabel,
   Link,
   TextField,
-  Typography
-} from '@mui/material';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+  Typography,
+} from "@mui/material";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   signInUserWithEmailAndPassword,
-  signInWithGooglePopup
-} from '../utils/firebase/firebase.utils';
+  signInWithGooglePopup,
+} from "../utils/firebase/firebase.utils";
 
 const defaultUser = {
-  email: '',
-  password: ''
+  email: "",
+  password: "",
 };
 const UserSignInForm = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(defaultUser);
   const { email, password } = user;
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
   };
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // setUser({ ...user, role: 'user' });
     const res = await signInUserWithEmailAndPassword(email, password);
@@ -39,37 +39,27 @@ const UserSignInForm = () => {
       const res = await signInWithGooglePopup();
       console.log(res.user);
     } catch (error) {
-      console.log('error signing with google', error.message);
+      console.log("error signing with google", error.message);
     }
   };
   return (
-    <Container
-      component="main"
-      maxWidth="xs"
-      // sx={{
-      //   color: 'black',
-      //   boxShadow:
-      //     'rgba(0, 0, 0, 0.24) 0px 3px 8px;rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px',
-      //   borderRadius: '5px',
-      //   width: 'content-fit'
-      //   // padding:'',
-      // }}
-    >
-      <Box
-        py={5}
-        sx={
-          {
-            // marginTop: 8,
-            // display: 'flex',
-            // flexDirection: 'column',
-          }
-        }
-      >
-        <Typography component="h1" fontSize={'42px'} color={'#000'}
-        sx={{textAlign:'center'}}>
+    <Container component="main" maxWidth="xs">
+      <Box py={5}>
+        <Typography
+          component="h1"
+          fontSize={"42px"}
+          color={"#000"}
+          sx={{ textAlign: "center" }}
+        >
           Sign in
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          noValidate
+          sx={{ mt: 1 }}
+          color={"black"}
+        >
           <TextField
             margin="normal"
             required
@@ -100,8 +90,8 @@ const UserSignInForm = () => {
           />
           <Box
             sx={{
-              display: 'flex',
-              flexDirection: 'column'
+              display: "flex",
+              flexDirection: "column",
             }}
           >
             <Button
@@ -110,7 +100,7 @@ const UserSignInForm = () => {
               variant="contained"
               size="large"
               onClick={handleSubmit}
-              sx={{ mt: 3, textTransform: 'none' }}
+              sx={{ mt: 3, textTransform: "none" }}
             >
               Sign In
             </Button>
@@ -118,7 +108,7 @@ const UserSignInForm = () => {
               type="button"
               size="large"
               variant="contained"
-              sx={{ mt: 3, mb: 2, textTransform: 'none' }}
+              sx={{ mt: 3, mb: 2, textTransform: "none" }}
               onClick={handleGooglePopup}
             >
               Sign In With Google
@@ -126,15 +116,15 @@ const UserSignInForm = () => {
           </Box>
           <Box
             sx={{
-              display: 'flex',
-              flexDirection: 'column'
+              display: "flex",
+              flexDirection: "column",
             }}
           >
-            <Link sx={{ textAlign: 'center' }} href="#" variant="body2">
+            <Link sx={{ textAlign: "center" }} href="#" variant="body2">
               Forgot password?
             </Link>
             <Button
-              onClick={() => navigate('/auth/user/sign-up')}
+              onClick={() => navigate("/auth/user/sign-up")}
               variant="body2"
             >
               {"Don't have an account? Sign Up"}

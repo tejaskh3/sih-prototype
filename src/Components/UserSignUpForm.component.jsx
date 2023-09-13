@@ -29,22 +29,19 @@ const UserSignUpForm = () => {
   const [userDetails, setUserDetails] = useState(defaultUser);
   const { displayName, email, password } = userDetails;
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setUserDetails({ ...userDetails, [name]: value });
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(userDetails);
       const { user } = await createUserFromEmailAndPassword(email, password);
       console.log(user);
       const userRef = await createUserDocumentFromAuth(user, userDetails);
       console.log(userRef);
-      console.log('user created');
+      console("user created");
       setUserDetails(defaultUser);
-      console.log(currentUser);
-      console.log(currentUser);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         alert("email already in use");
@@ -53,13 +50,13 @@ const UserSignUpForm = () => {
       if (error.code === "auth/weak-password") {
         alert("password is too weak keep at least 6 words");
         return;
-      } else console.log('error registering the user', error);
+      }
+      console.log("error registering the user", error.message);
     }
   };
   const handleGooglePopup = async () => {
     try {
       const { user } = await signInWithGooglePopup();
-      console.log(user);
       const userRef = await createUserDocumentFromAuth(user, userDetails);
       console.log(userRef);
     } catch (error) {
@@ -67,133 +64,146 @@ const UserSignUpForm = () => {
     }
   };
   return (
-    <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '100vh' }}>
-        <CssBaseline />
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
+    <Grid container component="main" sx={{ height: "100vh" }}>
+      <CssBaseline />
+      <Grid
+        item
+        xs={false}
+        sm={4}
+        md={7}
+        sx={{
+          backgroundImage: `url(${authBanner})`,
+          backgroundRepeat: "no-repeat",
+          backgroundColor: (t) =>
+            t.palette.mode === "light"
+              ? t.palette.grey[50]
+              : t.palette.grey[900],
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Box
           sx={{
-            backgroundImage: `url(${authBanner})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: t =>
-              t.palette.mode === 'light'
-                ? t.palette.grey[50]
-                : t.palette.grey[900],
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
+            my: 0,
+            mx: 4,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
-        />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        >
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign up
+          </Typography>
           <Box
-            sx={{
-              my: 0,
-              mx: 4,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center'
-            }}
+            component="form"
+            noValidate
+            // onSubmit={handleSubmit}
+            sx={{ mt: 3 }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign up
-            </Typography>
-            <Box
-              component="form"
-              noValidate
-              // onSubmit={handleSubmit}
-              sx={{ mt: 3 }}
-            >
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="email"
-                    type="text"
-                    label="Enter Your Name"
-                    name="displayName"
-                    value={displayName}
-                    onChange={handleChange}
-                    autoComplete="name"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    type="email"
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    value={email}
-                    onChange={handleChange}
-                    autoComplete="email"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    name="password"
-                    value={password}
-                    label="Password"
-                    type="password"
-                    id="password"
-                    onChange={handleChange}
-                    autoComplete="new-password"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox value="allowExtraEmails" color="primary" />
-                    }
-                    label="I want to receive inspiration, marketing promotions and updates via email."
-                  />
-                </Grid>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  type="text"
+                  label="Enter Your Name"
+                  name="displayName"
+                  value={displayName}
+                  onChange={handleChange}
+                  autoComplete="name"
+                />
               </Grid>
-              <Box
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  type="email"
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  value={email}
+                  onChange={handleChange}
+                  autoComplete="email"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  value={password}
+                  label="Password"
+                  type="password"
+                  id="password"
+                  onChange={handleChange}
+                  autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={
+                    <Checkbox value="allowExtraEmails" color="primary" />
+                  }
+                  label="I want to receive inspiration, marketing promotions and updates via email."
+                />
+              </Grid>
+            </Grid>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <Button
+                type="submit"
+                color="secondary"
+                variant="contained"
+                size="large"
+                onClick={handleSubmit}
+                sx={{ mt: 3, textTransform: "none" }}
+              >
+                Sign Up
+              </Button>
+              <Button
+                type="button"
+                size="large"
+                variant="contained"
+                sx={{ mt: 3, mb: 2, textTransform: "none" }}
+                onClick={handleGooglePopup}
+              >
+                Sign In with Google
+              </Button>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: "5px",
+              }}
+            >
+              <Typography variant="span">Already have an account?</Typography>
+              <Button
+                onClick={() => navigate("/auth/user")}
+                color="secondary"
                 sx={{
-                  display: 'flex',
-                  justifyContent: 'space-around'
+                  fontSize: "inherit",
+                  textTransform: "none",
                 }}
               >
-                <Button
-                  type="submit"
-                  // fullWidth
-                  variant="contained"
-                  onClick={handleSubmit}
-                  sx={{ mt: 3, mb: 2 }}
-                >
-                  Sign Up
-                </Button>
-                <Button
-                  type="button"
-                  // fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                  onClick={handleGooglePopup}
-                >
-                  Sign In with Google
-                </Button>
-              </Box>
-              <Grid container justifyContent="flex-end">
-                <Grid item>
-                  <Link href="#" variant="body2">
-                    Already have an account? Sign in
-                  </Link>
-                </Grid>
-              </Grid>
+                Sign in
+              </Button>
             </Box>
           </Box>
-        </Grid>
+        </Box>
       </Grid>
-    </ThemeProvider>
+    </Grid>
   );
 };
 export default UserSignUpForm;

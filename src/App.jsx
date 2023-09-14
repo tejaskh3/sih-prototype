@@ -7,8 +7,11 @@ import UserSignUpForm from "./components/UserSignUpForm.component";
 import { UserContext, UserProvider } from "./context/User.Context";
 import HomePage from "./pages/HomePage";
 import RootLayout from "./pages/RootLayout";
+import TalkToLawyer from "./pages/TalkToLawyer";
 import ServiceProvidersHome from "./pages/service-providers/ServiceProvidersHome";
 import UserHomePage, { userHomeLoader } from "./pages/users/UserHomePage";
+import Startup from "./pages/Startup";
+import Property from "./pages/Property";
 const App = () => {
   // const [currentUser, setCurrentUser] = useContext(UserContext);
 
@@ -35,6 +38,9 @@ const App = () => {
           loader: userHomeLoader,
           element: <UserHomePage />,
         },
+        { path: "talk-to-lawyer", element: <TalkToLawyer /> },
+        { path: "startup", element: <Startup /> },
+        { path: "property", element: <Property /> },
       ],
     },
   ]);

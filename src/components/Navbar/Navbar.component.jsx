@@ -16,8 +16,8 @@ import { Box } from "@mui/system";
 import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/User.Context";
-import classes from "./Navbar.module.css";
 import HomePage from "../../pages/HomePage";
+import classes from "./Navbar.module.css";
 
 const Navbar = () => {
   const [currentUser, setCurrentUser] = useContext(UserContext);
@@ -40,11 +40,11 @@ const Navbar = () => {
   const navLinks = [
     {
       name: "Talk to Lawyer",
-      path: "",
+      path: "talk-to-lawyer",
     },
     {
       name: "Property",
-      path: "",
+      path: "property",
     },
     {
       name: "Document",
@@ -52,7 +52,7 @@ const Navbar = () => {
     },
     {
       name: "Startup",
-      path: "",
+      path: "startup",
     },
     {
       name: "Ask Lawyer",
@@ -64,17 +64,15 @@ const Navbar = () => {
     <>
       <AppBar color="white">
         <Toolbar sx={{ justifyContent: "space-between" }}>
-          <Box>
-            <img src="../../assets/logo.png" alt="logo" />
+          <Box onClick={() => navigate("/")}>
+            <img src="/src/assets/logo.png" alt="logo" width="150px" />
           </Box>
-          {/* <Typography>
-            <i>Logo here</i>
-          </Typography> */}
           <Button onClick={toggleDrawer} sx={{ color: "black" }}>
             <CloseIcon />
           </Button>
         </Toolbar>
       </AppBar>
+      <Toolbar />
       <List>
         {navLinks.map((navLink) => (
           <ListItem key={navLink.path}>
@@ -127,8 +125,8 @@ const Navbar = () => {
     <>
       <AppBar color="white" sx={{ px: { md: 12 } }} position="fixed">
         <Toolbar sx={{ justifyContent: "space-between" }}>
-          <IconButton  LinkComponent={<HomePage />}>
-              <img src="/src/assets/logo.png" alt="logo" width={"150px"} />
+          <IconButton onClick={() => navigate("/")}>
+            <img src="/src/assets/logo.png" alt="logo" width={"150px"} />
           </IconButton>
 
           {/* navbar for PC */}
